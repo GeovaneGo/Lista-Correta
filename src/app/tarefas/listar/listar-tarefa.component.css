@@ -1,0 +1,22 @@
+
+/* COMPONENTES */
+
+thead{
+    font-size: x-large;
+    background: rgb(43, 57, 78);
+    color: rgb(230, 225, 225);
+}
+h1{
+    color: cornsilk;
+}
+
+/* CLASSES */
+
+.navBG{
+    background: rgb(43, 57, 78);
+}
+
+.padding15{
+    padding-bottom: 15px;
+    padding-top: 15px;
+}

@@ -1,0 +1,65 @@
+
+<div class="container-fluid">
+        <nav class="navbar navbar-default navBG">
+            <div class='container-fluig'>
+                    <h1 class="text-center"> Cadastrar Tarefas</h1>
+            </div>
+        </nav>
+    </div>
+<div class="container-fluid">
+  <!-- # >> disponibiliza uma varável local no form -->
+  <form #formTarefa="ngForm">
+    <div class="form-group col-md-10">
+      <label  for="nome">Descrição da Tarefa:</label>
+      <input 
+        type="text"
+        class="form-control"
+        id="nome"
+        name="nome"
+        [(ngModel)]="tarefa.descricao"
+        #descricao="ngModel"
+        minlength="5" 
+        required> 
+        <!--[()] - bind duplo, se alterar qualquer valor do campo de texto, automaticamente será alterado no outro lugar -->
+      <div *ngIf="descricao.errors && (descricao.dirty || descricao.touched)" class="alert alert-danger">
+        <div [hidden]="!descricao.errors.required">
+          Digite a tarefa.
+        </div>
+        <div [hidden]="!descricao.errors.minlength">
+          A tarefa deve conter ao menos 5 caracteres.
+        </div>
+      </div>
+    </div>
+    <!-- Não consegui formatar deixar a data bonita ;(  -->
+    <div class="form-group col-md-2">
+        <label for="prazo">Prazo:</label>
+                <input 
+                  type="date" 
+                  placeholder="DD/MM/AAAA" 
+                  class="form-control text-center" 
+                  [(ngModel)]="tarefa.prazo"
+                  #prazo="ngModel" 
+                  id="prazo" 
+                  name="prazo"
+                  required>
+        <div *ngIf="prazo.errors && (prazo.dirty || prazo.touched)" class="alert alert-danger">
+            <div [hidden]="!prazo.errors.required">
+                Selecione uma data = 'DD/MM/AAAA'.
+            </div>
+        </div>
+    </div>
+    <div class="form-group text-center container">
+      <input 
+        type="submit" 
+        class="btn btn-success" 
+        value="Cadastrar"
+        (click)="cadastrar()"
+        [disabled]="!formTarefa.form.valid"> <!-- define como desabilitado, enquanto o formulário esteja inválido -->
+      <a 
+        class="btn btn-default" 
+        [routerLink]="['/tarefas']">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Voltar
+      </a>
+    </div>
+  </form>
+</div>
